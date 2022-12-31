@@ -1,0 +1,23 @@
+version=1
+title=Container Lockout API
+description=[h2]API for locking containers with set conditions.[/h2]
+description=
+description=[img]https://i.imgur.com/p7Fv1Z6.gif[/img]
+description=
+description=[url=https://ko-fi.com/chuckleberryfinn][img]https://i.imgur.com/GxZ38nz.png[/img] [b]Consider supporting Chuck![/b][/url] [url=https://www.patreon.com/bePatron?u=17239488][img]https://raw.githubusercontent.com/ChuckTheSheep/Vanilla-Weapons-Expanded/main/Contents/mods/VanillaWeaponsExpanded/patreon/Patreon%20Logo.png[/img][/url]
+description=
+description=
+description=[code]How To Use:
+description=
+description=---Define local copy of `containerLockout` using require
+description=local containerLockout = require "containerLockout-shared"
+description=
+description=local function func(mapObject, player)
+description=   --add conditions here, for example:
+description=    if player:getModData().blockView == true then return false end
+description=end
+description=
+description=containerLockout.addFunction(func)[/code]
+
+tags=Build 41;Framework;Misc;Multiplayer
+visibility=public
