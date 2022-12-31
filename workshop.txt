@@ -1,4 +1,5 @@
 version=1
+id=2909984178
 title=Container Lockout API
 description=[h2]API for locking containers with set conditions.[/h2]
 description=
@@ -17,7 +18,11 @@ description=   --add conditions here, for example:
 description=    if player:getModData().blockView == true then return false end
 description=end
 description=
-description=containerLockout.addFunction(func)[/code]
-
+description=containerLockout.addFunction(func)
+description=
+description=---default texture: "media/ui/lock.png"
+description=--function containerLockout.setTexture(texturePath)
+description=--Call this anywhere after using require
+description=[/code]
 tags=Build 41;Framework;Misc;Multiplayer
 visibility=public

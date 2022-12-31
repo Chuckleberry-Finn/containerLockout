@@ -1,5 +1,9 @@
 local containerLockout = {}
 
+containerLockout.texture = "media/ui/lock.png"
+function containerLockout.getTexture() return containerLockout.texture end
+function containerLockout.setTexture(texturePath) containerLockout.texture = getTexture(texturePath) and texturePath end
+
 containerLockout.funcToPass = {}
 containerLockout.funcOrigins = {}
 
@@ -48,9 +52,8 @@ end
 return containerLockout
 
 --[[
-How To Use:
-
----Define local copy of `containerLockout` using require
+---How To Use:
+--Define local copy of `containerLockout` using require
 local containerLockout = require "containerLockout-shared"
 
 local function func(mapObject, player)
@@ -59,5 +62,12 @@ local function func(mapObject, player)
 end
 
 containerLockout.addFunction(func)
+
+---default texture: "media/ui/lock.png"
+--function containerLockout.setTexture(texturePath)
+
+---default texture: "media/ui/lock.png"
+--function containerLockout.setTexture(texturePath)
+--Call this anywhere after using require
 --]]
 

@@ -114,7 +114,7 @@ local function hideButtons(UI, STEP)
                         containerButton.onRightMouseDown = nil
                         containerButton:setOnMouseOverFunction(nil)
                         containerButton:setOnMouseOutFunction(nil)
-                        containerButton.textureOverride = getTexture("media/ui/lock.png")
+                        containerButton.textureOverride = getTexture(containerLockOut.texture)
                     end
                 end
             end
