@@ -63,11 +63,8 @@ end
 
 containerLockout.addFunction(func)
 
+--Additionally:
 ---default texture: "media/ui/lock.png"
---function containerLockout.setTexture(texturePath)
-
----default texture: "media/ui/lock.png"
---function containerLockout.setTexture(texturePath)
+containerLockout.setTexture(texturePath)
 --Call this anywhere after using require
 --]]
-
