@@ -44,15 +44,13 @@ end
 local ISInventoryPage_prevUnlockedContainer = ISInventoryPage.prevUnlockedContainer
 function ISInventoryPage:prevUnlockedContainer(index, wrap)
     local _index = ISInventoryPage_prevUnlockedContainer(self, index, wrap)
-    if _index ~= -1 then
-        local backpack = self.backpacks[_index]
+    local playerObj = getSpecificPlayer(self.player)
+    for i=_index,1,-1 do
+        local backpack = self.backpacks[i]
         local object = backpack.inventory:getParent()
-        local playerObj = getSpecificPlayer(self.player)
-        if not containerLockOut.canInteract(object, playerObj) then
-            return self:prevUnlockedContainer(_index, true)
-        end
+        if containerLockOut.canInteract(object, playerObj) then return i end
     end
-    return _index
+    return wrap and self:prevUnlockedContainer(#self.backpacks + 1, false) or -1
 end
 
 
@@ -60,15 +58,15 @@ end
 local ISInventoryPage_nextUnlockedContainer = ISInventoryPage.nextUnlockedContainer
 function ISInventoryPage:nextUnlockedContainer(index, wrap)
     local _index = ISInventoryPage_nextUnlockedContainer(self, index, wrap)
-    if _index ~= -1 then
-        local backpack = self.backpacks[_index]
+
+    local playerObj = getSpecificPlayer(self.player)
+    for i=_index,#self.backpacks do
+        local backpack = self.backpacks[i]
         local object = backpack.inventory:getParent()
-        local playerObj = getSpecificPlayer(self.player)
-        if not containerLockOut.canInteract(object, playerObj) then
-            return self:nextUnlockedContainer(_index, true)
-        end
+        if containerLockOut.canInteract(object, playerObj) then return i end
     end
-    return _index
+    return wrap and self:nextUnlockedContainer(0, false) or -1
+
 end
 
 
@@ -100,10 +98,10 @@ end
 ---Places the lock texture over the button and prevents it from working
 local function hideButtons(UI, STEP)
     if STEP == "end" and (not UI.onCharacter) then
-
         for _,containerButton in ipairs(UI.backpacks) do
             local mapObj = containerButton.inventory:getParent()
             if mapObj then
+
                 local playerObj = getSpecificPlayer(UI.player)
                 local canView = containerLockOut.canInteract(mapObj, playerObj)
                 if not canView then

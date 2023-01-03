@@ -39,7 +39,7 @@ function containerLockout.canInteract(mapObject, player)
     for index,func in pairs(containerLockout.funcToPass) do
 
         local returnedValue = func(mapObject, player)
-        if returnedValue==nil then print("WARN: containerLockout.canInteract: "..containerLockout.funcOrigins[index].." added function with no returned value.") end
+        if returnedValue==nil then print("WARN: containerLockout.canInteract: "..tostring(containerLockout.funcOrigins[index]).." added function with no returned value.") end
         if type(returnedValue)~="boolean" then print("WARN: containerLockout.canInteract: "..containerLockout.funcOrigins[index].." added function returning a non-boolean.") end
 
         --if any functions return false canView must be set to false
