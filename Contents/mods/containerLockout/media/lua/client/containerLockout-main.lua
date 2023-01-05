@@ -7,7 +7,7 @@ local containerLockOut = require "containerLockout-shared"
 local ISInventoryTransferAction_isValid = ISInventoryTransferAction.isValid
 function ISInventoryTransferAction:isValid()
     if self.destContainer and self.srcContainer then
-        local playerObj = getSpecificPlayer(self.player)
+        local playerObj = self.character
         if containerLockOut.canInteract(self.destContainer:getParent(),playerObj) and containerLockOut.canInteract(self.srcContainer:getParent(), playerObj) then
             return ISInventoryTransferAction_isValid(self)
         end
