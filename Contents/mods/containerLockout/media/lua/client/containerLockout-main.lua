@@ -22,9 +22,9 @@ function ISInventoryPage:dropItemsInContainer(button)
     local allow = true
 
     if container then
-        local mapObj = container:getParent()
+        local worldObj = container:getParent()
         local playerObj = getSpecificPlayer(self.player)
-        if mapObj then allow = containerLockOut.canInteract(mapObj, playerObj) end
+        if worldObj then allow = containerLockOut.canInteract(worldObj, playerObj) end
     end
 
     if allow then ISInventoryPage_dropItemsInContainer(self, button)
@@ -99,11 +99,11 @@ end
 local function hideButtons(UI, STEP)
     if STEP == "end" and (not UI.onCharacter) then
         for _,containerButton in ipairs(UI.backpacks) do
-            local mapObj = containerButton.inventory:getParent()
-            if mapObj then
+            local worldObj = containerButton.inventory:getParent()
+            if worldObj then
 
                 local playerObj = getSpecificPlayer(UI.player)
-                local canView = containerLockOut.canInteract(mapObj, playerObj)
+                local canView = containerLockOut.canInteract(worldObj, playerObj)
                 if not canView then
                     if containerButton then
                         containerButton.onclick = nil

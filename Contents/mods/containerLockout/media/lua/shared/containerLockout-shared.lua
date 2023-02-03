@@ -29,16 +29,16 @@ function containerLockout.addFunction(func)
     table.insert(containerLockout.funcOrigins, modID)
 end
 
----Validates if the mapObject can be interacted with
-function containerLockout.canInteract(mapObject, player)
-    if not mapObject then return true end
+---Validates if the worldObject can be interacted with
+function containerLockout.canInteract(worldObject, player)
+    if not worldObject then return true end
 
     --Assumed behavior is that you can see/interact with the container
     local canView = true
 
     for index,func in pairs(containerLockout.funcToPass) do
 
-        local returnedValue = func(mapObject, player)
+        local returnedValue = func(worldObject, player)
         if returnedValue==nil then print("WARN: containerLockout.canInteract: "..tostring(containerLockout.funcOrigins[index]).." added function with no returned value.") end
         if type(returnedValue)~="boolean" then print("WARN: containerLockout.canInteract: "..containerLockout.funcOrigins[index].." added function returning a non-boolean.") end
 
@@ -56,7 +56,7 @@ return containerLockout
 --Define local copy of `containerLockout` using require
 local containerLockout = require "containerLockout-shared"
 
-local function func(mapObject, player)
+local function func(worldObject, player)
     --add conditions here, for example:
     if player:getModData().blockView == true then return false end
 end

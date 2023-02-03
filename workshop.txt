@@ -13,7 +13,7 @@ description=
 description=---Define local copy of `containerLockout` using require
 description=local containerLockout = require "containerLockout-shared"
 description=
-description=local function func(mapObject, player)
+description=local function func(worldObject, player)
 description=   --add conditions here, for example:
 description=    if player:getModData().blockView == true then return false end
 description=end
